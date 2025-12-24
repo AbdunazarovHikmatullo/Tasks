@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% include 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block staticfiles %}
+<link rel="stylesheet" href="{% static 'account/css/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <div class="auth-card">
+            <div class="auth-card-header">
+                <h1>Логин</h1>
+            </div>
+            <div class="auth-card-content">
+                <form action="" method="post">
+                    {% csrf_token%}
+                    {% for field in form %}
+                    {% if field.errors %}
+                    <div>
+                        {{field.errors}}
+                    </div>
+
+                    {% endif %}
+                    <div class="input-group">
+                        <label for="{{ field.id_for_label }}"> {{field.label}} </label>
+                        {{field}}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn-basic">
+                        Логин
+                    </button>
+                </form>
+            </div>
+            <div class="auth-card-footer">
+                <a href="{% url 'register' %}">Нет аккаунта ? залетай</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
+
+{% block scriptfiles %}
+{% endblock scriptfiles %}
