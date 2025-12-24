@@ -5,41 +5,63 @@
 <link rel="stylesheet" href="{% static 'todo/css/todo.css' %}">
 {% endblock %}
 
-{% block content %} 
-    <main>
-        <aside>
-            <div class="aside-header">
-                <h1> {{ request.user.username }} </h1>
-            </div>
-            <!-- <div class="aside-content">
-                <div class="aside-group">
-                    {% if todo_list %}
-                    <div class="aside-item">
-                        <ul>
-                            {% for t_list in todo_list %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% else %}
-                        пусто
-                    {% endif %}
-                </div>
-            </div> -->
-            <div class="aside-footer">
-                <button class="btn-basic">Создать список</button>
-                <button class="btn-basic">Избранные</button>
-            </div>
-        </aside>
-        <div class="list">
-            
+{% block content %}
+<main>
+    <aside>
+        <div class="aside-header">
+            <h1> {{ request.user.username }} </h1>
         </div>
-    </main>
-
-    <div class="hidden" id="create-task-modal">
-        12
+        <div class="aside-content">
+            <div class="aside-group">
+                {% if todo_list %}
+                <div class="aside-item">
+                    <ul>
+                        <a href="/" class="list-item">Все</a>
+                        {% for t_list in todo_list %}
+                        <a href="#" class="list-item">
+                            {{t_list.name}}
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                пусто
+                {% endif %}
+            </div>
+        </div>
+        <div class="aside-footer">
+            <button class="btn-basic">Создать список</button>
+            <button class="btn-basic">Избранные</button>
+        </div>
+    </aside>
+    <div class="list">
+        <header>
+            <div class="container">
+                <div>
+                    <button class="btn-icon" id="aside-trigger">
+                        >
+                    </button>
+                </div>
+                <div>
+                    <button class="btn-icon">
+                        grid
+                    </button>
+                    <!-- {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" class="btn-basic">
+                            Выход
+                        </a>
+                    {%else%}
+                        <a href="{% url 'login' %}" class="btn-basic">
+                            Войти
+                        </a>
+                    {% endif %} -->
+                </div>
+            </div>
+        </header>
     </div>
+</main>
 {% endblock content %}
 
 {% block scriptfiles %}
-    <script src="{% static 'todo/js/todo.js' %}"></script>
+<script src="{% static 'todo/js/todo.js' %}"></script>
 {% endblock scriptfiles %}

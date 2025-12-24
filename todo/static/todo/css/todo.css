@@ -1,48 +1,108 @@
-main{
+main {
     display: flex;
     min-height: 100vh;
 }
-aside{
-    padding: 10px;
+
+aside {
     width: 320px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border);
     flex-grow: 1;
     max-width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+.aside-header{
+    height: 50px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
 
-aside h1{
+.aside-header h1 {
+    font-size: 20px;
     padding: 15px;
     border-radius: 10px;
 }
-.aside-header{
-    border-bottom: 1px solid var(--border-light);
-}
-.aside-header h1:hover{
-    background-color: var(--border-light);
+
+.aside-header h1:hover {
+    background-color: var(--border);
     cursor: pointer;
 }
 
-.aside-content{
+.aside-content {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    overflow-y: scroll;
 }
 
-.aside-footer{
-    border-top: 1px solid var(--border-light);
+.aside-footer {
+    border-top: 1px solid var(--border);
     padding: 15px;
     display: flex;
     flex-direction: column;
 }
 
-.aside-group{
+.aside-group {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--border-light);
 }
-.aside-item{
+
+.aside-item {
     padding: 10px;
-    border: var(--border-light);
+    border: var(--border);
+}
+
+.aside-item ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.list-item {
+    padding: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+
+
+.list-item:hover {
+    background-color: var(--border);
+    text-decoration: none;
+}
+
+.list{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.list header{
+    height: 60px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+}
+
+.list header .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+
+
+@media (max-width:720px){
+    aside{
+        display: none;
+    }
+    
 }
