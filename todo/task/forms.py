@@ -18,6 +18,7 @@ class ListItemForm(forms.ModelForm):
         
         widgets = {
             'title': forms.TextInput(attrs={
+                'label':"Название",
                 "placeholder": "Введите название",
                 "class": "inp-basic"
             }),

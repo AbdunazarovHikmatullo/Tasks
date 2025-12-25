@@ -13,24 +13,15 @@
         </div>
         <div class="aside-content">
             <div class="aside-group">
-                {% if todo_list %}
                 <div class="aside-item">
                     <ul>
                         <a href="/" class="list-item">Все</a>
-                        {% for t_list in todo_list %}
-                        <a href="#" class="list-item">
-                            {{t_list.name}}
-                        </a>
-                        {% endfor %}
                     </ul>
                 </div>
-                {% else %}
-                пусто
-                {% endif %}
             </div>
         </div>
         <div class="aside-footer">
-            <button class="btn-basic">Создать список</button>
+            <button class="btn-basic" id="showCreateListModal">Создать список</button>
             <button class="btn-basic">Избранные</button>
         </div>
     </aside>
@@ -46,18 +37,32 @@
                     <button class="btn-icon">
                         grid
                     </button>
-                    <!-- {% if user.is_authenticated %}
-                        <a href="{% url 'logout' %}" class="btn-basic">
-                            Выход
-                        </a>
-                    {%else%}
-                        <a href="{% url 'login' %}" class="btn-basic">
-                            Войти
-                        </a>
-                    {% endif %} -->
                 </div>
             </div>
         </header>
+        <div class="card-list" id="card-list">
+            {% for t_list in todo_list%}
+                <div class="card">
+                    <div class="card-header">
+                        {{t_list.name}}
+                        <button class="btn-icon">add</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="modal create-list-modal" id="createListModal">
+            <form action="" method="post" class="form">
+                {% csrf_token%}
+                {% for field in form %}
+                <div class="input-group">
+                    <label for="{{field.label}}">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <button class="btn-basic" type="submit">Создать</button>
+            </form>
+        </div>
     </div>
 </main>
 {% endblock content %}
