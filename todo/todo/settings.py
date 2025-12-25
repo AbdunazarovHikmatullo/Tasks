@@ -1,6 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account'
+    'account',
+    'task'
 ]
 
 MIDDLEWARE = [
@@ -82,8 +85,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Dushanbe' 
 USE_I18N = True
 
 USE_TZ = True
@@ -98,5 +100,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = '/account/login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

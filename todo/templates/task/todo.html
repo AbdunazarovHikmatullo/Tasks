@@ -1,0 +1,72 @@
+{% include 'base.html' %}
+{% load static %}
+
+{% block staticfiles %}
+<link rel="stylesheet" href="{% static 'todo/css/todo.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <aside>
+        <div class="aside-header">
+            <h1> {{ request.user.username }} </h1>
+        </div>
+        <div class="aside-content">
+            <div class="aside-group">
+                <div class="aside-item">
+                    <ul>
+                        <a href="/" class="list-item">Все</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="aside-footer">
+            <button class="btn-basic" id="showCreateListModal">Создать список</button>
+            <button class="btn-basic">Избранные</button>
+        </div>
+    </aside>
+    <div class="list">
+        <header>
+            <div class="container">
+                <div>
+                    <button class="btn-icon" id="aside-trigger">
+                        >
+                    </button>
+                </div>
+                <div>
+                    <button class="btn-icon">
+                        grid
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div class="card-list" id="card-list">
+            {% for t_list in todo_list%}
+                <div class="card">
+                    <div class="card-header">
+                        {{t_list.name}}
+                        <button class="btn-icon">add</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="modal create-list-modal" id="createListModal">
+            <form action="" method="post" class="form">
+                {% csrf_token%}
+                {% for field in form %}
+                <div class="input-group">
+                    <label for="{{field.label}}">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                <button class="btn-basic" type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+
+{% block scriptfiles %}
+<script src="{% static 'todo/js/todo.js' %}"></script>
+{% endblock scriptfiles %}
